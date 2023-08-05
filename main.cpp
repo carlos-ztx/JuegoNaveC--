@@ -5,10 +5,9 @@
 #define IZQ 75
 #define DER 77
 
-
-char avion_l1[] = {' ', ' ', ' ', '*',' ',' ',' ', 0};
-char avion_l2[] = {' ', ' ', '*', '*','*',' ',' ', 0};
-char avion_l3[] = {' ', '*', ' ', '*',' ','*',' ', 0};
+char avion_l1[] = {' ', ' ', ' ', '*', ' ', ' ', ' ', 0};
+char avion_l2[] = {' ', ' ', '*', '*', '*', ' ', ' ', 0};
+char avion_l3[] = {' ', '*', ' ', '*', ' ', '*', ' ', 0};
 
 char explocion_l1[] = {' ', '*', ' ', '*', ' ', '*', ' ', 0};
 char explocion_l2[] = {' ', ' ', '*', '*', '*', ' ', ' ', 0};
@@ -23,7 +22,8 @@ int corazones = 3;
 int ix = 40;
 int iy = 19;
 
-int y = 8, x = 12;
+//Coordenadas asteroides
+int y = 120, x = 120;
 int yy = 12, xx = 17;
 int y1 = 6, x1 = 58;
 int y2 = 9, x2 = 70;
@@ -33,7 +33,8 @@ int i, v;
 int repeticion = 0, nivel = 1;
 bool condicion = false;
 
-void gotoxy(int x, int y){
+void gotoxy(int x, int y)
+{
     HANDLE hCon;
     COORD dwPos;
 
@@ -41,45 +42,95 @@ void gotoxy(int x, int y){
     dwPos.Y = y;
 
     hCon = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleCursorPosition(hCon,dwPos);
+    SetConsoleCursorPosition(hCon, dwPos);
 }
 
-void vidas(int v){
-    gotoxy(2,1); printf("VIDAS %d", v);
+void vidas(int v)
+{
+    gotoxy(2, 1);
+    printf("VIDAS %d", v);
 }
 
-void barraSalud(int n){
+void barraSalud(int n)
+{
     x = 95;
-    gotoxy(x, 1); printf(" ");
-    gotoxy(x+1, 1); printf(" ");
-    gotoxy(x+2, 1); printf(" ");
+    gotoxy(x, 1);
+    printf(" ");
+    gotoxy(x + 1, 1);
+    printf(" ");
+    gotoxy(x + 2, 1);
+    printf(" ");
 
-    for(v = 0; v < n; v++){
-        gotoxy(x+v, 1);
+    for (v = 0; v < n; v++)
+    {
+        gotoxy(x + v, 1);
         printf("%c", 3);
     }
 }
 
-void explocion(void){
-    gotoxy(ix, iy); puts(explocion_l1);
-    gotoxy(ix, iy+1); puts(explocion_l2);
-    gotoxy(ix, iy+2); puts(explocion_l3);
+void explocion(void)
+{
+    gotoxy(ix, iy);
+    puts(explocion_l1);
+    gotoxy(ix, iy + 1);
+    puts(explocion_l2);
+    gotoxy(ix, iy + 2);
+    puts(explocion_l3);
     Sleep(380);
 
-    gotoxy(ix, iy); puts(explocion_r1);
-    gotoxy(ix, iy + 1); puts(explocion_r2);
-    gotoxy(ix, iy + 2); puts(explocion_r3);
+    gotoxy(ix, iy);
+    puts(explocion_r1);
+    gotoxy(ix, iy + 1);
+    puts(explocion_r2);
+    gotoxy(ix, iy + 2);
+    puts(explocion_r3);
     Sleep(380);
 
-    gotoxy(ix, iy); puts(explocion_r1);
-    gotoxy(ix, iy + 1); puts(explocion_r2);
-    gotoxy(ix, iy + 2); puts(explocion_r3);
-    Sleep(380);
+    gotoxy(ix, iy);
+    puts(avion_l1);
+    gotoxy(ix, iy + 1);
+    puts(avion_l2);
+    gotoxy(ix, iy + 2);
+    puts(avion_l3);
 }
 
-int main(){
+void jugar(void)
+{
+    // rutinas de los asteroides
+    // A1
+    gotoxy(x, y);
+    printf("%c", 'a');
+    // A2
+    gotoxy(xx, yy);
+    printf("%c", 'b');
+    // A3
+    gotoxy(x1, y1);
+    printf("%c", 'c');
+    // A4
+    gotoxy(x2, y2);
+    printf("%c", 'd');
+
+/*     Sleep(70);
+    // Al mover se deben limpiar los asteroides
+    // A1
+    gotoxy(x, y);
+    printf(" ");
+    // A2
+    gotoxy(xx, yy);
+    printf(" ");
+    // A3
+    gotoxy(x1, y1);
+    printf(" ");
+    // A4
+    gotoxy(x2, y2);
+    printf(" "); */
+}
+
+int main()
+{
     vidas(num_vidas);
     barraSalud(3);
     explocion();
+    jugar();
     getch();
 }
