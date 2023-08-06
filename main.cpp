@@ -19,14 +19,19 @@ char explocion_r3[] = {'*', ' ', '*', '*', ' ', '*', ' ', 0};
 
 int num_vidas = 3;
 int corazones = 3;
-int ix = 40;
-int iy = 19;
+int ix = 45;
+int iy = 20;
 
-//Coordenadas asteroides
-int y = 120, x = 120;
+//Coordenadas
+int y = 20, x = 85;
+int yy = 12, xx = 85; // Ast_B
+int y1 = 6, x1 = 85;  // Ast_C
+int y2 = 9, x2 = 85;  // Ast_D
+/*
+int y = 8, x = 12;
 int yy = 12, xx = 17;
 int y1 = 6, x1 = 58;
-int y2 = 9, x2 = 70;
+int y2 = 9, x2 = 70; */
 
 int i, v;
 
@@ -99,7 +104,7 @@ void jugar(void)
     // rutinas de los asteroides
     // A1
     gotoxy(x, y);
-    printf("%c", 'a');
+    printf("%c", 2);
     // A2
     gotoxy(xx, yy);
     printf("%c", 'b');
@@ -110,27 +115,27 @@ void jugar(void)
     gotoxy(x2, y2);
     printf("%c", 'd');
 
-/*     Sleep(70);
-    // Al mover se deben limpiar los asteroides
-    // A1
-    gotoxy(x, y);
-    printf(" ");
-    // A2
-    gotoxy(xx, yy);
-    printf(" ");
-    // A3
-    gotoxy(x1, y1);
-    printf(" ");
-    // A4
-    gotoxy(x2, y2);
-    printf(" "); */
+    /*     Sleep(70);
+        // Al mover se deben limpiar los asteroides
+        // A1
+        gotoxy(x, y);
+        printf(" ");
+        // A2
+        gotoxy(xx, yy);
+        printf(" ");
+        // A3
+        gotoxy(x1, y1);
+        printf(" ");
+        // A4
+        gotoxy(x2, y2);
+        printf(" "); */
 }
 
 int main()
 {
     vidas(num_vidas);
     barraSalud(3);
-    explocion();
     jugar();
+    explocion();
     getch();
 }
